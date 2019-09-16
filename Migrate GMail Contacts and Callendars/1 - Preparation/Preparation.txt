@@ -1,0 +1,57 @@
+MIGRATION LIMITATIONS:
+* For mail data there is a throughput limitation, enforced by G Suite, of 2 GB per mailbox per day.
+* The largest single email message that can be migrated is 35MB. The limit can be increased.
+* Mail data is currently migrated using the IMAP protocol.
+* Contacts and calendar information is migrated via a different protocol. 
+
+PREPARATION:
+1. Create a Google Service Account
+    1. Login to: https://console.developers.google.com/projectselector2/iam-admin/serviceaccounts
+    2. Create a new project
+    3. Create a new service account
+    4. Create JSON key and and keep it somewhere safe(it will be needed when creating migration endpoint with PowerShell)
+    5. Keep 'Unique ID' somewhere safe (it will be required for granting access to the service account in step 3.3.)
+    6. Enable G Suite Domain-wide Delegation
+2. Enable API usage in your project
+    1. Login as user used to create a Google Service Account to: https://console.developers.google.com/apis/library
+    2. Select the project that you created and used before
+    3. Search for and enable following APIs
+        * Gmail API
+        * Google Calendar API
+        * Contacts API
+3. Grant access to the service account for your Google tenant
+    1. Login as G Suite root admin to (use your domain): https://admin.google.com/domain.com/AdminHome
+    2. Navigate to: Security > Advanced settings > Manage API client access
+    3. In Client Name, type the ClientId (this is  Unique ID from step 1.5.)
+    4. In API Scopes add the required scopes (https://mail.google.com/,https://www.googleapis.com/auth/calendar,https://www.google.com/m8/feeds/,https://www.googleapis.com/auth/gmail.settings.sharing)
+    5. Authorize and verify that the resulting list shows "Email (Read/Write/Send)", "Calendar (Read-Write)", "Contacts (Read/Write)", and "https://www.googleapis.com/auth/gmail.settings.sharing"
+4. Create a sub-domain for mail routing to Office 365
+    1. G Suite side:
+        1. Login as G Suite root admin to (use your domain): https://admin.google.com/domain.com/AdminHome
+        2. Navigate to: Domains > Add/remove domains > Add a domain or a domain alias
+        3. Add another domain (use your domain): o365.domain.com
+        4. Follow any steps required to get the domain to a verified state
+        5. Click Skip Google MX setup, and then click I use another mail server. This other mail server will be Office 365
+        6. (4.2.) Log into your DNS provider and update your DNS records so that you have an MX record at the domain you created above in step 3, pointing to Office 365
+    2. Office365 side:
+    https://docs.microsoft.com/en-us/office365/admin/setup/add-domain
+        1. Login as global admin to: https://admin.microsoft.com
+        2. Navigate to: Setup > Domains
+        3. Add domain (use your domain): o365.domain.com
+        4. Follow any steps required to get the domain to a verified state
+        5. Add all required DNS records
+            * Mail exchanger record (MX Record)
+            * Sender Policy Framework record (SPF Record)
+5. Create a sub-domain for mail routing to your G Suite domain
+    1. Login as G Suite admin to (use your domain): https://admin.google.com/domain.com/AdminHome
+    2. Navigate to: Domains > Add/remove domains > Add a domain or a domain alias
+    3. Add a domain alias of...(use your domain): gsuite.domain.com
+    4. Follow any steps required to get the domain to a verified state
+    5. Click Set up Google MX records, and then follow the instructions that are listed for your DNS provider.
+    # IMPORTANT: If you are using non-default Transport settings in your Office 365 organization, 
+                 you should check that mail flow will work from Office 365 to G Suite. 
+                 Be sure that either your default Remote Domain ("*") has Automatic Forwarding enabled, 
+                 or that there is a new Remote Domain for your G Suite routing domain (e.g. "gsuite.domain.com") 
+                 that has Automatic Forwarding enabled.
+6. Provision users in O365 (2_Provision_O365Users.ps1)
+7. Start a G Suite migration with Exchange Online Powershell
