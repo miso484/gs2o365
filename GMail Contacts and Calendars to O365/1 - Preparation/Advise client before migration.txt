@@ -1,0 +1,10 @@
+MIGRATION LIMITATIONS:
+* For mail data there is a throughput limitation, enforced by G Suite, of 2 GB per mailbox per day.
+* The largest single email message that can be migrated is 35MB. The limit can be increased.
+* Mail data is currently migrated using the IMAP protocol.
+* Contacts and calendar information is migrated via a different protocol. 
+
+CLIENTS TO DO:
+* Clean unnecessary mails before migration in order to speed up migration process
+* Migration requires credentials for root GSuite admin account and global O365 admin account
+* File migration requires download of all content of all users and all shared directories to local or shared drive
