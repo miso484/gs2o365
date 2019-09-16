@@ -1,0 +1,12 @@
+PREPARATION:
+1. Export GSuite organization's data
+    1. Login as root admin to: https://admin.google.com/ac/customertakeout
+    2. Start Export (typically takes 72h but it could take up to 9 days)
+2. View and reorder data
+    1. In your confirmation email or in the data export tool, click Access archive
+    2. In the archive, click the folder to see a list of user folders
+    3. Unzip zip file for each user in user folders
+3. Prepare migration json files
+    1. Check passwords for newly created O365 users and update BatchMultipleUsers.json file
+    2. Prepare BatchSharedDir.json that points to shared folder and SharePoint online
+    3. Prepare BatchMultipleUsers.json that points each user folder to user's OneDrive

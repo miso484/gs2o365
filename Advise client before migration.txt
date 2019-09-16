@@ -8,3 +8,4 @@ CLIENTS TO DO:
 * Clean unnecessary mails before migration in order to speed up migration process
 * Migration requires credentials for root GSuite admin account and global O365 admin account
 * File migration requires download of all content of all users and all shared directories to local or shared drive
+* Data that GSuite users have deleted is unavailable for export using Data Export 
