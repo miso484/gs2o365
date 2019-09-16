@@ -10,3 +10,29 @@ PREPARATION:
     1. Check passwords for newly created O365 users and update BatchMultipleUsers.json file
     2. Prepare BatchSharedDir.json that points to shared folder and SharePoint online
     3. Prepare BatchMultipleUsers.json that points each user folder to user's OneDrive
+
+The data export tool currently doesn't support:
+    * Chrome Sync (a Core Service for G Suite for Education customers only)
+    * Google Tasks
+    * Certain types of Drive data:
+        * Older versions of images, videos, PDFs, and other non-Google file types that users have marked Keep forever
+        * Comments added to images, videos, PDFs, and other non-Google file types
+        * Shared drive data for organizations with Drive Enterprise and for organizations that have a mix of different G Suite editions
+        * Files in users' trash
+    * Data for users that:
+        * are suspended, archived, deleted, or have had their license removed
+        * are assigned a Vault former employee license
+        * no longer have access to some Core Service. Some services delete their data for those users when a G Suite admin turns them off
+    * Messages in admin quarantine
+    * Pending messages in moderated groups
+
+Data that should be exported using other methods:
+    * Data that was deleted by users but is being retained by Vault—A Vault admin can export this data.
+    * Cloud Search data—Learn how to retrieve your organization's Cloud Search data.
+
+Requirements
+To use the data export tool, you must:
+    * Have held an account in your domain for a period of 30 days or more, if your domain was created more than 30 days ago
+    * Be a super administrator of your Google domain
+    * Have 2-Step Verification enforced on your account. This is required only for the admin performing the export
+    * Have fewer than 1,000 users on your Google Account. If you have more than 1,000 users, contact Google Cloud Support to temporarily enable the data export tool
