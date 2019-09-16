@@ -53,5 +53,5 @@ PREPARATION:
                  Be sure that either your default Remote Domain ("*") has Automatic Forwarding enabled, 
                  or that there is a new Remote Domain for your G Suite routing domain (e.g. "gsuite.domain.com") 
                  that has Automatic Forwarding enabled.
-6. Provision users in O365 (2_Provision_O365Users.ps1)
-7. Start a G Suite migration with Exchange Online Powershell
+6. Provision users in O365 (2 - Provision O365 Users)
+7. Start a G Suite migration with Exchange Online Powershell (3 - Migration Process)
