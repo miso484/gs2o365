@@ -1,3 +1,2 @@
 ﻿UserPrincipalName,FirstName,LastName,DisplayName,UsageLocation,AccountSkuId
-test.accountone@domain.com,Test,AccountOne,Test AccountOne
-test.accounttwo@domain.com,Test,AccountTwo,Test AccountTwo
+test.accountthree@domain.com,Test,AccountThree,Test AccountThree,BA,domain:O365_BUSINESS_ESSENTIALS
