@@ -1,0 +1,9 @@
+{
+  "Tasks": [
+    {
+      "SourcePath": "C:\\PathTo\\SharedDirectory",
+      "TargetPath": "https://companyname.sharepoint.com",
+      "TargetList": "Documents"
+    }
+  ]
+}

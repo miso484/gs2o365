@@ -1,0 +1,4 @@
+﻿UserPrincipalName,FirstName,LastName,DisplayName,UsageLocation,AccountSkuId
+user1@domain.com,Sample,User1,Sample User1
+user2@domain.com,Sample,User2,Sample User2
+test.user@domain.com,Test,User,Test User

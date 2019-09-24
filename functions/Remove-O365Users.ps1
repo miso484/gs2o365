@@ -9,29 +9,28 @@
   Office 365 account with admin privilegies.
  .Parameter csvPath
   Path to csv file with users for removal.
- .Parameter csvName
-  Name of csv file with users for removal.
  .Parameter ValidateMOSSA
   Validate if Microsoft Online Services Sign-in Assistant is installed (Yes|No). 
  .Example
    # Remove Office 365 users using default parameters.
-   Remove-Office365Users
+   Remove-O365Users
  .Example
    # Remove Office 365 users connecting with other admin account.
-   Remove-Office365Users -O365AdminAccount "other.user@domain.com"
+   Remove-O365Users -O365AdminAccount "adminuser@domain.com"
  .Example
    # Remove Office 365 users connecting with other admin account and different csv path and name.
-   Remove-Office365Users -O365AdminAccount "other.user@domain.com" -csvPath "C:\" -csvName "Import.csv"
+   Remove-O365Users -O365AdminAccount "adminuser@domain.com" -csvPath "C:\Import.csv" -Verbose
 #>
-function Remove-Office365Users {
+function Remove-O365Users {
+    [CmdletBinding(SupportsShouldProcess = $true, confirmImpact = 'High')]
     param(
+        [Parameter(Mandatory=$true)]
+        [string] $O365AdminAccount,
         [string] $MSOnlineMinVersion = '1.1.183.17',
-        [string] $O365AdminAccount = 'miso.stamenic@domain.com',
-        [string] $csvPath = 'D:\Projects\GSuite-to-Office365-Migration\GMail Contacts and Calendars to O365\2 - Provision O365 Users',
-        [string] $csvName = 'Import_O365Users.csv',
+        [string] $csvPath = "$PSScriptRoot\config\O365Users_Sample.csv",
         [ValidateSet('Yes', 'No')][string] $ValidateMOSSA
     )
-    if (!$ValidateMOSSA){
+    if (!$ValidateMOSSA) {
         $ValidateMOSSA = Read-Host -Prompt 'Have you installed Microsoft Online Services Sign-in Assistant (Yes|No):'
     }
     switch ($ValidateMOSSA.ToLower()) {
@@ -50,7 +49,7 @@ function Remove-Office365Users {
             Remove-Item C:\O365Credential.xml
 
             ## Remove a group of users
-            Import-Csv -Path "$csvPath\$csvName" |
+            Import-Csv -Path "$csvPath" |
             ForEach-Object { Remove-MsolUser -UserPrincipalName $_.UserPrincipalName -Force -Verbose }
         }
         "no" { 
@@ -63,5 +62,3 @@ function Remove-Office365Users {
         }
     }
 }
-#Export-ModuleMember -Function Remove-Office365Users
-Remove-Office365Users -O365AdminAccount "miso.stamenic@wayseventech.com"

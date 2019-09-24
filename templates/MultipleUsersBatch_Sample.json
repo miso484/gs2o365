@@ -1,0 +1,25 @@
+{
+  "Tasks": [
+    {
+      "SourcePath": "C:\\PathTo\\User1Dir",
+      "TargetPath": "https://companyname-my.sharepoint.com/personal/user1_domain_com",
+      "TargetList": "Documents",
+      "Account": "user1@domain.com",
+      "Credential": "*********"
+    },
+    {
+      "SourcePath": "C:\\PathTo\\User2Dir",
+      "TargetPath": "https://companyname-my.sharepoint.com/personal/user2_domain_com",
+      "TargetList": "Documents",
+      "Account": "user2@domain.com",
+      "Credential": "*********"
+    },
+    {
+      "SourcePath": "C:\\PathTo\\testUserDir",
+      "TargetPath": "https://companyname-my.sharepoint.com/personal/test_user_domain_com",
+      "TargetList": "Documents",
+      "Account": "test.user@domain.com",
+      "Credential": "*********"
+    }
+  ]
+}

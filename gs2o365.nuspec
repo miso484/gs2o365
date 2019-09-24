@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>gs2o365</id>
+    <version>$version$</version>
+    <title>gs2o365</title>
+    <authors>Miso Stamenic</authors>
+    <owners>Miso Stamenic</owners>
+    <description>A collection of PowerShell functions.</description>
+    <projectUrl>https://github.com/miso484/gs2o365</projectUrl>
+  </metadata>
+</package>
