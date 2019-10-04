@@ -35,7 +35,7 @@ Add-O365Users @params -Verbose
 # Start migration
 $params = @{ 'OGlobalAdminUser' = "$AdminUser";
              'GSDomain' = "$SourceGSDomain";
-             'ODomain' = "o365.$TargetO365Domain";
+             'ODomain' = "$TargetO365Domain";
              'GSKeyPath' = "$GSServiceKeyPath";
              'CSVDataPath' = "$UsersMigrationCSVPath"
 }

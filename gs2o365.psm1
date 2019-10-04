@@ -211,7 +211,7 @@ function Start-GSuiteToO365Migration {
     Write-Verbose "Checking if a $GBatchName migration batch exists in Office365 ..."
     if (!(Get-MigrationBatch -Identity $GBatchName)) {
         Write-Verbose "Migration batch does not exist. Creating a new $GBatchName migration batch ..."
-        New-MigrationBatch -SourceEndpoint $GEndpointName -Name $GBatchName -CSVData $([System.IO.File]::ReadAllBytes("$CSVDataPath")) -TargetDeliveryDomain $ODomain  
+        New-MigrationBatch -SourceEndpoint $GEndpointName -Name $GBatchName -CSVData $([System.IO.File]::ReadAllBytes("$CSVDataPath")) -TargetDeliveryDomain "o365.$ODomain"
     }
     else {
         Write-Verbose "Migration batch $GBatchName exists ...."
